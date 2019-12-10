@@ -3,20 +3,20 @@ services:
   - docker
   
 before_install:
-  - docker build -t xabiMoreno/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t xabimoreno/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true xabiMoreno/react-test npm test -- --coverage
+  - docker run -e CI=true xabimoreno/react-test npm test -- --coverage
 
 after_sucess:
-  - docker build -t xabiMoreno/multi-client ./client
-  - docker build -t xabiMoreno/multi-nginx ./nginx
-  - docker build -t xabiMoreno/multi-server ./server
-  - docker build -t xabiMoreno/multi-worker ./worker
+  - docker build -t xabimoreno/multi-client ./client
+  - docker build -t xabimoreno/multi-nginx ./nginx
+  - docker build -t xabimoreno/multi-server ./server
+  - docker build -t xabimoreno/multi-worker ./worker
   #Login docker cli
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   #Push images to docker hub
-  - docker push xabiMoreno/multi-client
-  - docker push xabiMoreno/multi-nginx
-  - docker push xabiMoreno/multi-server
-  - docker push xabiMoreno/multi-worker
+  - docker push xabimoreno/multi-client
+  - docker push xabimoreno/multi-nginx
+  - docker push xabimoreno/multi-server
+  - docker push xabimoreno/multi-worker
