@@ -20,3 +20,17 @@ after_sucess:
   - docker push xabimoreno/multi-nginx
   - docker push xabimoreno/multi-server
   - docker push xabimoreno/multi-worker
+
+
+deploy:
+  edge: true
+  provider: elasticbeanstalk
+  region: eu-west-1
+  app:  multi-docker
+  env: MultiDocker-env
+  bucket_name: elasticbeanstalk-eu-west-1-066900294137
+  bucket_path: docker-multi
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY 
+  secret_access_key: $AWS_SECRET_KEY
